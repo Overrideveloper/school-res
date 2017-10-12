@@ -6,6 +6,7 @@ import router from './router';
 import App from './App';
 
 require('../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss');
+require("font-awesome-webpack");
 
 Vue.use(BootstrapVue);
 
