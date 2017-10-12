@@ -1,7 +1,10 @@
 <template>
   <div class="hello">
     <h1>{{ text }}</h1>
-    <button class="btn btn-primary btn-lg text-center" v-link="'home'" >ENTER</button>
+    <br />
+    <hr />
+    <br />
+    <button class="btn btn-default btn-lg text-center" v-link="'start'" ><i class="fa fa-door" aria-hidden="true"></i>ENTER</button>
   </div>
 </template>
 
@@ -10,7 +13,7 @@ export default {
   name: 'LandingPage',
   data() {
     return {
-      text: 'SCHOLASTIC SCHOOL RESOURCE MANAGEMENT APP',
+      text: 'ALC ASSESSMENT SCHOOL RESOURCE MANAGEMENT APP',
     };
   },
 };
@@ -20,5 +23,6 @@ export default {
 <style scoped>
 h1 {
   font-weight: bold;
+  font-family: Monotype;
 }
 </style>

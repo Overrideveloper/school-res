@@ -5,6 +5,8 @@ import BootstrapVue from 'bootstrap-vue';
 import router from './router';
 import App from './App';
 
+require('../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss');
+
 Vue.use(BootstrapVue);
 
 /* import VueResource from 'vue-resource'; */
