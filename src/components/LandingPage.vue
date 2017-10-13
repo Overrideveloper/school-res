@@ -1,12 +1,15 @@
 <template>
   <div class="container">
-    <div class="jumbotron">
+    <br/>
+    <div class="jumbotron text-center">
       <h3 class="header">{{ header }}</h3>
       <h4 class="text-muted">{{ sub_header }}</h4>
     </div>
     <br />
     <br />
-    <router-link class="btn btn-success btn-lg text-center" to="/all_students"><span> PROCEED </span><icon name="arrow-right"></icon></router-link>
+    <center>
+      <router-link class="btn btn-success btn-lg text-center" to="/all_students"><span> PROCEED </span><icon name="arrow-right"></icon></router-link>
+    </center>
   </div>
 </template>
 

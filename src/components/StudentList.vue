@@ -1,5 +1,12 @@
 <template>
- <div></div>
+    <section>
+        <h1> {{ header }} </h1>
+        <ul class="breadcrumb">
+            <li class="active">
+                <router-link to="/all_students"><icon name="users"></icon> All Students </router-link>
+            </li>
+        </ul>
+    </section>
 </template>
 
 <script>
