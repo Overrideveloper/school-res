@@ -6,7 +6,7 @@
     </div>
     <br />
     <br />
-    <button class="btn btn-success btn-lg text-center">PROCEED <icon name="arrow-right"></icon></button>
+    <router-link class="btn btn-success btn-lg text-center" to="/all_students"><span> PROCEED </span><icon name="arrow-right"></icon></router-link>
   </div>
 </template>
 
@@ -26,6 +26,9 @@ export default {
 <style scoped>
 h3 {
   font-weight: bold;
+  font-family: Tahoma;
+}
+span {
   font-family: Tahoma;
 }
 </style>

@@ -3,32 +3,16 @@
 import Vue from 'vue';
 import 'vue-awesome/icons';
 import Icon from 'vue-awesome/components/Icon';
-import BootstrapVue from 'bootstrap-vue';
 import VueRouter from 'vue-router';
-import LandingPage from './components/LandingPage';
+import router from './router';
 import App from './App';
 
-require('../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss');
-
-Vue.use(BootstrapVue);
+Vue.use(VueRouter);
 Vue.component('icon', Icon);
-
-/* import VueResource from 'vue-resource'; */
-
 Vue.config.productionTip = false;
-
-/* Vue.use(VueResource); */
 
 /* eslint-disable no-new */
 
-const router = new VueRouter({
-  routes: [
-    {
-      path: '/home',
-      component: LandingPage,
-    },
-  ],
-});
 
 new Vue({
   el: '#app',
