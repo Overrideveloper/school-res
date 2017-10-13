@@ -1,9 +1,12 @@
 <template>
-  <div>
-    <h3 class="jumbotron">{{ text }}</h3>
+  <div class="container">
+    <div class="jumbotron">
+      <h3 class="header">{{ header }}</h3>
+      <h4 class="text-muted">{{ sub_header }}</h4>
+    </div>
     <br />
     <br />
-    <button class="btn btn-default btn-lg text-center"> PROCEED! </button>
+    <button class="btn btn-success btn-lg text-center">PROCEED <icon name="arrow-right"></icon></button>
   </div>
 </template>
 
@@ -12,7 +15,8 @@ export default {
   name: 'LandingPage',
   data() {
     return {
-      text: 'ALC ASSESSMENT SCHOOL RESOURCE MANAGEMENT APP',
+      header: 'SCHOOL RESOURCE MANAGEMENT APP',
+      sub_header: 'ALC 2.0 ASSESSMENT',
     };
   },
 };
@@ -20,8 +24,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1 {
+h3 {
   font-weight: bold;
-  font-family: Monotype;
+  font-family: Tahoma;
 }
 </style>
