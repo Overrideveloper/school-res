@@ -1,10 +1,9 @@
 <template>
-  <div class="hello">
-    <h1>{{ text }}</h1>
+  <div>
+    <h3 class="jumbotron">{{ text }}</h3>
     <br />
-    <hr />
     <br />
-    <button class="btn btn-default btn-lg text-center" v-link="'start'" ><i class="fa fa-door" aria-hidden="true"></i>ENTER</button>
+    <button class="btn btn-default btn-lg text-center"> PROCEED! </button>
   </div>
 </template>
 
