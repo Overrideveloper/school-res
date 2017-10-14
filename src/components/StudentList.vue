@@ -15,7 +15,7 @@
             </section>
         </section>
         <br />
-        <section class="content" id="table_section">
+        <section class="content jumbotron" id="table_section">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
@@ -41,15 +41,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr v-for="student in students">
                                         <td></td>
-                                        <td>Banso</td>
-                                        <td>Wisdom</td>
-                                        <td>0007</td>
-                                        <td>Ondo</td>
-                                        <td>July</td>
-                                        <td>BHUCMP</td>
-                                        <td>400</td>
+                                        <td>{{student.surname}}</td>
+                                        <td>{{student.firstname}}</td>
+                                        <td>{{student.regno}}</td>
+                                        <td>{{student.stateoforigin}}</td>
+                                        <td>{{student.dob}}</td>
+                                        <td>{{student.department}}</td>
+                                        <td>{{student.level}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -67,7 +67,25 @@ export default {
   data() {
     return {
       header: 'All Students',
+      students: [],
     };
+  },
+  methods: {
+    getStudents() {
+      this.$http
+        .get('http://localhost:4000/api/students').then((response) => {
+          if (response.status === 200) {
+            this.students = response.body;
+          }
+          if (response.status !== 200) {
+            // eslint-disable-next-line
+            console.log(response.body);
+          }
+        });
+    },
+  },
+  beforeMount() {
+    this.getStudents();
   },
 };
 </script>
