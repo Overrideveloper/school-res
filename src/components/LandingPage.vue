@@ -34,4 +34,7 @@ h3 {
 span {
   font-family: Tahoma;
 }
+.jumbotron{
+  background: white;
+}
 </style>
