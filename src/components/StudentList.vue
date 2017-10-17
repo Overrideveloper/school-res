@@ -22,7 +22,10 @@
                         <div class="box-header">
                             <h3 class="box-title"></h3>
                             <div class="pull-left">
-                                <a class="btn btn-sm btn-default" href="#"><icon name="plus"></icon> Add a student </a>
+                                <router-link class="btn btn-sm btn-default" v-bind:to="{ path: '/add_student' }"><icon name="plus"></icon> Add a student </router-link>
+                            </div>
+                            <div class="pull-right">
+                                <input v-model="searchKey" class="form-control" id="searchKey" placeholder="Search...." required/>
                             </div>
                         </div>
                         <br /><br /><br />
@@ -37,11 +40,12 @@
                                         <th>State of origin</th> 
                                         <th>Date of birth</th> 
                                         <th>Department</th> 
-                                        <th>Level</th> 
+                                        <th>Level</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr v-for="student in students">
+                                    <tr v-for="student in filteredStudents">
                                         <td></td>
                                         <td>{{student.surname}}</td>
                                         <td>{{student.firstname}}</td>
@@ -50,6 +54,7 @@
                                         <td>{{student.dob}}</td>
                                         <td>{{student.department}}</td>
                                         <td>{{student.level}}</td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -68,6 +73,7 @@ export default {
     return {
       header: 'All Students',
       students: [],
+      searchKey: '',
     };
   },
   methods: {
@@ -82,6 +88,17 @@ export default {
             console.log(response.body);
           }
         });
+    },
+  },
+  computed: {
+    filteredStudents() {
+      if (this.students.length) {
+        // eslint-disable-next-line
+        return this.students.filter(function (student) {
+          return this.searchKey.toLowerCase === '' || student.surname.toLowerCase().indexOf(this.searchKey) !== -1 || student.firstname.toLowerCase().indexOf(this.searchKey) !== -1;
+        }, this);
+      }
+      return this;
     },
   },
   beforeMount() {
