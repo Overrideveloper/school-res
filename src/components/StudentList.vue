@@ -22,7 +22,7 @@
                         <div class="box-header">
                             <h3 class="box-title"></h3>
                             <div class="pull-left">
-                                <router-link class="btn btn-sm btn-default" v-bind:to="{ path: '/add_student' }"><icon name="plus"></icon> Add a student </router-link>
+                                <router-link class="btn btn-sm btn-default" data-modal="" v-bind:to="{ path: '/add_student' }"><icon name="plus"></icon> Add a student </router-link>
                             </div>
                             <div class="pull-right">
                                 <input v-model="searchKey" class="form-control" id="searchKey" placeholder="Search...." required/>
@@ -63,6 +63,15 @@
                 </div>
             </div>
         </section>
+
+        <!-- modal placeholder-->
+        <div id='myModal' class='modal modal-primary fade in'>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-content" id='myModalContent'></div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
