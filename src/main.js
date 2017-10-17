@@ -5,11 +5,13 @@ import 'vue-awesome/icons';
 import Icon from 'vue-awesome/components/Icon';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
+import VModal from 'vue-js-modal';
 import router from './router';
 import App from './App';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
+Vue.use(VModal);
 Vue.component('icon', Icon);
 Vue.config.productionTip = false;
 
