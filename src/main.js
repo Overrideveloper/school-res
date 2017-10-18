@@ -6,13 +6,17 @@ import Icon from 'vue-awesome/components/Icon';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import VModal from 'vue-js-modal';
+import Toastr from 'vue-toastr';
 import router from './router';
 import App from './App';
+
+require('vue-toastr/src/vue-toastr.less');
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(VModal);
 Vue.component('icon', Icon);
+Vue.component('vue-toastr', Toastr);
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
