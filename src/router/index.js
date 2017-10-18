@@ -10,14 +10,17 @@ export default new Router({
     {
       path: '/',
       redirect: '/landing',
+      name: 'redirect',
     },
     {
       path: '/landing',
       component: LandingPage,
+      name: 'landing',
     },
     {
-      path: '/all_students',
+      path: '/students',
       component: StudentList,
+      name: 'students',
     },
   ],
 });
