@@ -15,7 +15,7 @@
             z-index: 9999 !important;
         }
         body{
-          background: cadetblue;
+          background: blueviolet;
         }
         html, body{
           height: 100%
@@ -29,5 +29,15 @@
   <body>
     <div id="app" class="wrapper"></div>
     <!-- built files will be auto injected -->
+    <script>
+      $(function () {
+          $('input[type=datetime]').datepicker({
+              dateFormat: "dd/M/yy",
+              changeMonth: true,
+              changeYear: true,
+              yearRange: "1960:2020"
+          });
+      });
+    </script>
   </body>
 </html>
