@@ -66,7 +66,7 @@
         </section>
 
         <modal name="add_student" :pivotY="0.3" :height="600" >
-            <form v-on:submit.prevent="addStudent">
+            <form v-on:submit.prevent="addStudent(); hideModal();">
                 <div class="modal-header">
                     <button type="button" class="close" v-on:click="hideModal()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -114,8 +114,8 @@
                         <div class="form-group">
                             <label for="dob" class="control-label col-sm-3 modal-text"> Date of Birth </label>
                             <div class="col-sm-6">
-                                <input class="form-control" type="datetime" id="dob" v-model="student.dob" required/>
-                            </div>
+                                <date-picker date-format="yy-mm-dd" @update-date="updateDate" v-once class="form-control" ></date-picker>
+                            </div>{{student.dob}}
                         </div>
                         <div class="form-group">
                             <label for="state" class="control-label col-sm-3 modal-text"> State of Origin </label>
@@ -191,15 +191,18 @@ export default {
         .then((response) => {
           // eslint-disable-next-line
           if (response.status === 201) {
-            this.hideModal();
-            this.$refs.toastr.s('Student added!');
-            this.router.push({ name: 'students' });
+            this.student = [];
+            this.getStudents();
+            this.$refs.toastr.s('Student added!', 'EMIS');
           }
           // eslint-disable-next-line
         }, response => {
           // eslint-disable-next-line
-            this.$refs.toastr.s('Error: ' + response.body);
+            this.$refs.toastr.s('Error: ' + response.data);
         });
+    },
+    updateDate(date) {
+      this.student.dob = date;
     },
   },
   computed: {

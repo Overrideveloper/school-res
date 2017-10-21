@@ -8,7 +8,7 @@
     <br />
     <br />
     <center>
-      <router-link class="btn btn-success btn-lg text-center" to="/all_students"><span> PROCEED </span><icon name="arrow-right"></icon></router-link>
+      <router-link class="btn btn-success btn-lg text-center" to="/students"><span> PROCEED </span><icon name="arrow-right"></icon></router-link>
     </center>
   </div>
 </template>
