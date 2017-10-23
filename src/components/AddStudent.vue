@@ -79,6 +79,7 @@
 <script>
 import bus from '../bus/bus';
 
+const URL = 'https://schoolinfoapp.herokuapp.com';
 export default {
   name: 'AddStudent',
   data() {
@@ -105,7 +106,8 @@ export default {
     },
     addStudent() {
       this.$http
-        .post('http://localhost:4000/api/students', this.student, {
+      // eslint-disable-next-line
+        .post(URL + '/api/students', this.student, {
           emulateJSON: true,
         })
         .then((response) => {

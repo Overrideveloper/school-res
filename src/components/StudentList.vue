@@ -74,6 +74,7 @@
 import bus from '../bus/bus';
 import AddStudent from '../components/AddStudent';
 
+const URL = 'https://schoolinfoapp.herokuapp.com';
 export default {
   name: 'StudentList',
   data() {
@@ -89,7 +90,8 @@ export default {
   methods: {
     getStudents() {
       this.$http
-        .get('http://localhost:4000/api/students').then((response) => {
+      // eslint-disable-next-line
+        .get(URL + '/api/students').then((response) => {
           if (response.status === 200) {
             this.students = response.data;
           }
