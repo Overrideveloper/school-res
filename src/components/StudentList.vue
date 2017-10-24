@@ -55,7 +55,11 @@
                                         <td>{{student.dob}}</td>
                                         <td>{{student.department}}</td>
                                         <td>{{student.level}}</td>
-                                        <td></td>
+                                        <td>
+                                            <a class="btn btn-xs btn-info" v-on:click="openEdit(student._id)">Edit</a>
+                                            <a class="btn btn-xs btn-danger">Delete</a>
+                                            <a></a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -67,12 +71,14 @@
        
         <vue-toastr ref="toastr"></vue-toastr>
         <add-student></add-student>
+        <edit-student></edit-student>
     </div>
 </template>
 
 <script>
 import bus from '../bus/bus';
 import AddStudent from '../components/AddStudent';
+import EditStudent from '../components/EditStudent';
 
 const URL = 'https://schoolinfoapp.herokuapp.com';
 export default {
@@ -86,6 +92,7 @@ export default {
   },
   components: {
     AddStudent,
+    EditStudent,
   },
   methods: {
     getStudents() {
@@ -93,7 +100,7 @@ export default {
       // eslint-disable-next-line
         .get(URL + '/api/students').then((response) => {
           if (response.status === 200) {
-            this.students = response.data;
+            this.students = response.body;
           }
           // eslint-disable-next-line
         }, response => {
@@ -106,6 +113,12 @@ export default {
     openCreate() {
     // eslint-disable-next-line
       bus.$emit('add_student');
+    },
+    openEdit(id) {
+      // eslint-disable-next-line
+      console.log('ID: ' + id);
+      // eslint-disable-next-line
+      bus.$emit('edit_student', { studentId : id});
     },
   },
   computed: {
