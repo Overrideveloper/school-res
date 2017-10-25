@@ -31,7 +31,7 @@ Vue.component('date-picker', {
       changeMonth: true,
       changeYear: true,
       // eslint-disable-next-line
-    onSelect: function(date) {
+      onSelect: function(date) {
         self.$emit('update-date', date);
       },
     });
