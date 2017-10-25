@@ -43,7 +43,9 @@
                         <div class="form-group">
                             <label for="level" class="control-label col-sm-3 modal-text"> Level </label>
                             <div class="col-sm-6">
-                                <input class="form-control" id="level" v-model="student.level" required/>
+                                <select v-model="student.level" class="form-control">
+                                    <option v-for="department in departments" v-bind:value="department.value">{{department.name}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -94,6 +96,12 @@ export default {
         department: '',
         level: '',
       },
+      departments: [
+        { name: '100 Level', value: '100' },
+        { name: '200 Level', value: '200' },
+        { name: '300 Level', value: '300' },
+        { name: '400 Level', value: '400' },
+      ],
     };
   },
   methods: {
