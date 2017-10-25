@@ -68,7 +68,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger pull-left" v-on:click="hideModal()">Close</button>
-                    <input type="submit" class="btn btn-success" value="Add"/>
+                    <input type="submit" class="btn btn-success" value="Edit"/>
                 </div>
             </form>
         </modal>
@@ -134,22 +134,21 @@ export default {
         .get(URL + '/api/students/' + studentId.studentId)
         .then((response) => {
           if (response.status === 200) {
-            this.student = response.data;
-            this.updateDate(this.student.dob);
+            this.student = response.body;
+            this.showModal();
           }
           // eslint-disable-next-line
         }, response => {
           // eslint-disable-next-line
           this.$refs.toastr.e('Error loading!', 'SIMS');
           // eslint-disable-next-line
-          console.log(response.data);
+          console.log(response.body);
         });
     },
   },
   created() {
   // eslint-disable-next-line
     bus.$on('edit_student', (studentId) => {
-      this.showModal();
       this.loadStudent(studentId);
     });
   },

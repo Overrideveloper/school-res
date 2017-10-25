@@ -49,7 +49,7 @@
                         <div class="form-group">
                             <label for="dob" class="control-label col-sm-3 modal-text"> Date of Birth </label>
                             <div class="col-sm-6">
-                                <date-picker date-format="yy-mm-dd" @update-date="updateDate" class="form-control" ></date-picker>
+                                <date-picker date-format="yy-mm-dd" @update-date="updateDate" :required="true" class="form-control" ></date-picker>
                             </div>
                         </div>
                         <div class="form-group">

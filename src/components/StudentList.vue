@@ -58,7 +58,7 @@
                                         <td>{{student.level}}</td>
                                         <td>
                                             <a class="btn btn-xs btn-info" v-on:click="openEdit(student._id)">Edit</a>
-                                            <a class="btn btn-xs btn-danger">Delete</a>
+                                            <a class="btn btn-xs btn-danger" v-on:click="openDelete(student._id)">Delete</a>
                                             <a></a>
                                         </td>
                                     </tr>
@@ -74,6 +74,7 @@
         <vue-toastr ref="loading"></vue-toastr>
         <add-student></add-student>
         <edit-student></edit-student>
+        <delete-student></delete-student>
     </div>
 </template>
 
@@ -81,6 +82,7 @@
 import bus from '../bus/bus';
 import AddStudent from '../components/AddStudent';
 import EditStudent from '../components/EditStudent';
+import DeleteStudent from '../components/DeleteStudent';
 
 const URL = 'https://schoolinfoapp.herokuapp.com';
 export default {
@@ -95,6 +97,7 @@ export default {
   components: {
     AddStudent,
     EditStudent,
+    DeleteStudent,
   },
   methods: {
     getStudents() {
@@ -112,7 +115,7 @@ export default {
           // eslint-disable-next-line
             this.$refs.toastr.e('Error loading!', 'SIMS');
           // eslint-disable-next-line
-            console.log(response.data);
+            console.log(response.body);
         });
     },
     openCreate() {
@@ -122,6 +125,10 @@ export default {
     openEdit(id) {
       // eslint-disable-next-line
       bus.$emit('edit_student', { studentId : id});
+    },
+    openDelete(id) {
+      // eslint-disable-next-line
+      bus.$emit('delete_student', { studentId : id});
     },
   },
   computed: {
