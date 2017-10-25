@@ -18,7 +18,7 @@ export default {
   name: 'LandingPage',
   data() {
     return {
-      header: 'SCHOOL RESOURCE MANAGEMENT APP',
+      header: 'STUDENT INFORMATION MANAGEMENT SYSTEM [SIMS]',
       sub_header: 'ALC 2.0 ASSESSMENT',
     };
   },

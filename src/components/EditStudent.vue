@@ -114,15 +114,15 @@ export default {
         })
         .then((response) => {
           // eslint-disable-next-line
-          if (response.status === 201) {
+          if (response.status === 200) {
             this.student = [];
             bus.$emit('load_students');
-            this.$refs.toastr.s('Student added!', 'EMIS');
+            this.$refs.toastr.s('Student edited!', 'SIMS');
           }
           // eslint-disable-next-line
         }, response => {
           // eslint-disable-next-line
-            this.$refs.toastr.s('Error: ' + response.data);
+            this.$refs.toastr.s('Error updating!', 'SIMS');
         });
     },
     updateDate(date) {
@@ -140,7 +140,7 @@ export default {
           // eslint-disable-next-line
         }, response => {
           // eslint-disable-next-line
-          this.$refs.toastr.e('Error!');
+          this.$refs.toastr.e('Error loading!', 'SIMS');
           // eslint-disable-next-line
           console.log(response.data);
         });

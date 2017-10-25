@@ -115,12 +115,12 @@ export default {
           if (response.status === 201) {
             this.student = [];
             bus.$emit('load_students');
-            this.$refs.toastr.s('Student added!', 'EMIS');
+            this.$refs.toastr.s('Student added!', 'SIMS');
           }
           // eslint-disable-next-line
         }, response => {
           // eslint-disable-next-line
-            this.$refs.toastr.s('Error: ' + response.data);
+            this.$refs.toastr.s('Error adding!', 'SIMS');
         });
     },
     updateDate(date) {

@@ -3,6 +3,7 @@
         <br />
         <section class="jumbotron text-center">
             <h3 class="header"> {{ header }} </h3>
+            <br/>
             <section class="pull-right">
                 <ul class="breadcrumb">
                     <li>
@@ -70,6 +71,7 @@
         </section>
        
         <vue-toastr ref="toastr"></vue-toastr>
+        <vue-toastr ref="loading"></vue-toastr>
         <add-student></add-student>
         <edit-student></edit-student>
     </div>
@@ -85,7 +87,7 @@ export default {
   name: 'StudentList',
   data() {
     return {
-      header: 'Students',
+      header: 'STUDENT INFORMATION MANAGEMENT SYSTEM [SIMS] ',
       students: [],
       searchKey: '',
     };
@@ -99,13 +101,16 @@ export default {
       this.$http
       // eslint-disable-next-line
         .get(URL + '/api/students').then((response) => {
+          this.$refs.loading.i('Loading...', 'SIMS');
           if (response.status === 200) {
+            this.$refs.loading.removeByType('info');
+            this.$refs.toastr.s('Loading complete!', 'SIMS');
             this.students = response.body;
           }
           // eslint-disable-next-line
         }, response => {
           // eslint-disable-next-line
-            this.$refs.toastr.e('Error!');
+            this.$refs.toastr.e('Error loading!', 'SIMS');
           // eslint-disable-next-line
             console.log(response.data);
         });
@@ -115,8 +120,6 @@ export default {
       bus.$emit('add_student');
     },
     openEdit(id) {
-      // eslint-disable-next-line
-      console.log('ID: ' + id);
       // eslint-disable-next-line
       bus.$emit('edit_student', { studentId : id});
     },
