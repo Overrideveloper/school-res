@@ -37,13 +37,17 @@
                         <div class="form-group">
                             <label for="dept" class="control-label col-sm-3 modal-text"> Department </label>
                             <div class="col-sm-6">
-                                <input class="form-control" id="dept" v-model="student.department" required/>
+                                <select v-model="student.department" class="form-control" required>
+                                    <option v-for="department in departments" v-bind:value="department.value">{{department.name}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="level" class="control-label col-sm-3 modal-text"> Level </label>
                             <div class="col-sm-6">
-                                <input class="form-control" id="level" v-model="student.level" required/>
+                                <select v-model="student.level" class="form-control" required>
+                                    <option v-for="level in levels" v-bind:value="level.value">{{level.name}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -55,7 +59,9 @@
                         <div class="form-group">
                             <label for="state" class="control-label col-sm-3 modal-text"> State of Origin </label>
                             <div class="col-sm-6">
-                                <input class="form-control" id="state" v-model="student.stateoforigin" required/>
+                                <select v-model="student.stateoforigin" class="form-control" required>{{student.stateoforigin}}
+                                    <option v-for="state in states" v-bind:value="state.name">{{state.name}}</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -96,6 +102,33 @@ export default {
         department: '',
         level: '',
       },
+      levels: [
+        { name: '100 Level', value: '100' },
+        { name: '200 Level', value: '200' },
+        { name: '300 Level', value: '300' },
+        { name: '400 Level', value: '400' },
+      ],
+      states: [],
+      departments: [
+        { name: 'Medicine', value: 'MBBS' },
+        { name: 'Anatomy', value: 'Anatomy' },
+        { name: 'Physiology', value: 'Physiology' },
+        { name: 'English Language', value: 'English Language' },
+        { name: 'Mass. Comm.', value: 'Mass. Comm.' },
+        { name: 'Accounting', value: 'Accounting' },
+        { name: 'Business Admin.', value: 'Business Admin.' },
+        { name: 'Economics', value: 'Economics' },
+        { name: 'Political Science', value: 'Political Science' },
+        { name: 'Sociology', value: 'Sociology' },
+        { name: 'Christian Religious Studies', value: 'Christian Religious Studies' },
+        { name: 'Law', value: 'Law' },
+        { name: 'Industrial Chemistry', value: 'Industrial Chemistry' },
+        { name: 'Computer Science', value: 'Computer Science' },
+        { name: 'Bio-Chemistry', value: 'Bio-Chemistry' },
+        { name: 'Microbiology', value: 'Microbiology' },
+        { name: 'Industrial Physics', value: 'Industrial Physics' },
+        { name: 'Mathematics & Statistics', value: 'Mathematics & Statistics' },
+      ],
     };
   },
   methods: {
@@ -103,7 +136,6 @@ export default {
       this.$modal.show('edit_student');
     },
     hideModal() {
-      this.student = [];
       this.$modal.hide('edit_student');
     },
     editStudent() {
@@ -115,7 +147,6 @@ export default {
         .then((response) => {
           // eslint-disable-next-line
           if (response.status === 200) {
-            this.student = [];
             bus.$emit('load_students');
             this.$refs.toastr.s('Student edited!', 'SIMS');
           }
@@ -145,10 +176,26 @@ export default {
           console.log(response.body);
         });
     },
+    loadStates() {
+      this.$http
+      // eslint-disable-next-line
+        .get('http://locationsng-api.herokuapp.com/api/v1/states').then((response) => {
+          if (response.status === 200) {
+            this.states = response.body;
+          }
+          // eslint-disable-next-line
+        }, response => {
+          // eslint-disable-next-line
+            this.$refs.toastr.e('Error loading states!', 'SIMS');
+          // eslint-disable-next-line
+            console.log(response.body);
+        });
+    },
   },
   created() {
   // eslint-disable-next-line
     bus.$on('edit_student', (studentId) => {
+      this.loadStates();
       this.loadStudent(studentId);
     });
   },
