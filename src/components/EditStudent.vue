@@ -64,12 +64,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="img" class="control-label col-sm-3 modal-text"> Image </label>
-                            <div class="col-sm-6">
-                                <input class="form-control" type="file" id="img"/>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
