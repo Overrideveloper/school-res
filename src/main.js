@@ -8,6 +8,7 @@ import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import VModal from 'vue-js-modal';
 import Toastr from 'vue-toastr';
+import VuePaginate from 'vue-paginate';
 import router from './router';
 import App from './App';
 
@@ -17,6 +18,7 @@ require('jqueryui');
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(VModal);
+Vue.use(VuePaginate);
 Vue.component('icon', Icon);
 Vue.component('vue-toastr', Toastr);
 Vue.component('date-picker', {
