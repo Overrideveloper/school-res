@@ -36,11 +36,9 @@
                                 <thead>
                                     <tr>
                                         <th></th> 
+                                        <th>Registration number</th> 
                                         <th>Surname</th> 
-                                        <th>First name</th> 
-                                        <th>Reg. no</th> 
-                                        <th>State of origin</th> 
-                                        <th>Date of birth</th> 
+                                        <th>First name</th>
                                         <th>Department</th> 
                                         <th>Level</th>
                                         <th>Actions</th>
@@ -49,17 +47,15 @@
                                 <tbody>
                                     <tr v-for="student in filteredStudents">
                                         <td></td>
+                                        <td>{{student.regno}}</td>
                                         <td>{{student.surname}}</td>
                                         <td>{{student.firstname}}</td>
-                                        <td>{{student.regno}}</td>
-                                        <td>{{student.stateoforigin}}</td>
-                                        <td>{{student.dob}}</td>
                                         <td>{{student.department}}</td>
                                         <td>{{student.level}}</td>
                                         <td>
-                                            <a class="btn btn-xs btn-info" v-on:click="openEdit(student._id)">Edit</a>
-                                            <a class="btn btn-xs btn-danger" v-on:click="openDelete(student._id)">Delete</a>
-                                            <a></a>
+                                            <a class="btn btn-xs btn-info" v-on:click="openEdit(student._id)"><icon name="pencil-square-o"></icon> Edit</a>
+                                            <a class="btn btn-xs btn-danger" v-on:click="openDelete(student._id)"><icon name="trash-o"></icon> Delete</a>
+                                            <a class="btn btn-xs btn-success" v-on:click="openView(student._id)"><icon name="folder-open-o"></icon> View details</a>
                                         </td>
                                     </tr>
                                 </tbody>
