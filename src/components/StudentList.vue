@@ -35,7 +35,6 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th></th> 
                                         <th>Registration number</th> 
                                         <th>Surname</th> 
                                         <th>First name</th>
@@ -44,9 +43,8 @@
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr v-for="student in filteredStudents">
-                                        <td></td>
+                                <paginate name="student_list" :list="filteredStudents" :per="5" tag="tbody">
+                                    <tr v-for="student in paginated('student_list')">
                                         <td>{{student.regno}}</td>
                                         <td>{{student.surname}}</td>
                                         <td>{{student.firstname}}</td>
@@ -58,7 +56,8 @@
                                             <a class="btn btn-xs btn-success" v-on:click="openView(student._id)"><icon name="folder-open-o"></icon> View details</a>
                                         </td>
                                     </tr>
-                                </tbody>
+                                </paginate>
+                                <paginate-links for="student_list" class="pagination" :show-step-links="true" :step-links="{ prev: 'Prev', next: 'Next'}"></paginate-links>
                             </table>
                         </div>
                     </div>
@@ -90,6 +89,7 @@ export default {
       header: 'STUDENT INFORMATION MANAGEMENT SYSTEM [SIMS] ',
       students: [],
       searchKey: '',
+      paginate: ['student_list'],
     };
   },
   components: {
