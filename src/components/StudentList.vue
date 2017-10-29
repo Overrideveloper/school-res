@@ -71,6 +71,7 @@
         <add-student></add-student>
         <edit-student></edit-student>
         <delete-student></delete-student>
+        <student-details></student-details>
     </div>
 </template>
 
@@ -79,6 +80,7 @@ import bus from '../bus/bus';
 import AddStudent from '../components/AddStudent';
 import EditStudent from '../components/EditStudent';
 import DeleteStudent from '../components/DeleteStudent';
+import StudentDetails from '../components/StudentDetails';
 
 const URL = 'https://schoolinfoapp.herokuapp.com';
 export default {
@@ -94,6 +96,7 @@ export default {
     AddStudent,
     EditStudent,
     DeleteStudent,
+    StudentDetails,
   },
   methods: {
     getStudents() {
@@ -125,6 +128,10 @@ export default {
     openDelete(id) {
       // eslint-disable-next-line
       bus.$emit('delete_student', { studentId : id});
+    },
+    openView(id) {
+      // eslint-disable-next-line
+      bus.$emit('student_details', { studentId : id});
     },
   },
   computed: {
