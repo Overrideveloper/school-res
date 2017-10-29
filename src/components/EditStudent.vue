@@ -1,6 +1,6 @@
 <template>
     <div>
-        <modal name="edit_student" :pivotY="0.3" :height="600" >
+        <modal name="edit_student" :adaptive="true" :scrollable="true" :pivotY="0.08" height="auto">
             <form v-on:submit.prevent="editStudent(); hideModal();">
                 <div class="modal-header">
                     <button type="button" class="close" v-on:click="hideModal()" aria-label="Close">

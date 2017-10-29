@@ -1,6 +1,6 @@
 <template>
   <div>
-        <modal name="delete_student" :pivotY="0.1" :height="220" >
+        <modal name="delete_student" :adaptive="true" :scrollable="true" :pivotY="0.08" height="auto">
             <form v-on:submit.prevent="deleteStudent(); hideModal();">
                 <div class="modal-header">
                     <button type="button" class="close" v-on:click="hideModal()" aria-label="Close">
@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <div class="col-sm-9">
+                            <div class="col-sm-12">
                                 <center class="modal-text text-center"><h4>Are you sure you want to delete this?</h4></center>
                             </div>
                         </div>
