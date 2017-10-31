@@ -1,7 +1,7 @@
 <template>
     <div>
         <modal name="add_student" :adaptive="true" :scrollable="true" :pivotY="0.08" height="auto">
-            <form v-on:submit.prevent="addStudent(); hideModal();">
+            <form v-on:submit.prevent="addStudent(); hideModal();" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" v-on:click="hideModal()" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -64,6 +64,12 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="img" class="control-label col-sm-3 modal-text"> Image </label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="file" id="image" name="image" @change="onFileChange" required/>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -93,6 +99,7 @@ export default {
         dob: '',
         department: '',
         level: '',
+        image: '',
       },
       levels: [
         { name: '100 Level', value: '100' },
@@ -131,6 +138,26 @@ export default {
       this.clearForm();
       this.$modal.hide('add_student');
     },
+    onFileChange(e) {
+      const files = e.target.files || e.dataTransfer.files;
+      // eslint-disable-next-line
+      if (!files[0])
+        return;
+      const image = new FormData();
+      image.append('image', files[0]);
+      this.$http
+      // eslint-disable-next-line
+        .post('http://localhost:5000/api/upload', image, { headers: { 'Content-Type': 'multipart/form-data' } })
+        .then((response) => {
+          this.student.image = response.body.imageName;
+          // eslint-disable-next-line
+          console.log(this.student.image);
+          // eslint-disable-next-line
+        }, response => {
+          // eslint-disable-next-line
+          console.log(response);
+        });
+    },
     addStudent() {
       this.$http
       // eslint-disable-next-line
@@ -148,7 +175,7 @@ export default {
           // eslint-disable-next-line
         }, response => {
           // eslint-disable-next-line
-            this.$refs.toastr.s('Error adding!', 'SIMS');
+            this.$refs.toastr.e('Error adding!', 'SIMS');
         });
     },
     updateDate(date) {
