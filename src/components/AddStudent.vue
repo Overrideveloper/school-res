@@ -1,6 +1,6 @@
 <template>
     <div>
-        <modal name="add_student" :adaptive="true" :scrollable="true" :pivotY="0.08" height="auto">
+        <modal name="add_student" :adaptive="true" :scrollable="true" static="true" :pivotY="0.08" height="auto">
             <form v-on:submit.prevent="addStudent(); hideModal();" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" v-on:click="hideModal()" aria-label="Close">
@@ -10,6 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
+                        <p style="text-align:center;" v-if="imageStatus"><img :src="imageUrl" width="260" height="200"/></p>
                         <div class="form-group">
                             <label for="surname" class="control-label col-sm-3 modal-text"> Surname </label>
                             <div class="col-sm-6">
@@ -74,7 +75,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger pull-left" v-on:click="hideModal()">Close</button>
-                    <input type="submit" class="btn btn-success" value="Add"/>
+                    <input type="submit" class="btn btn-success" v-bind:disabled="!readyStatus" value="Add"/>
                 </div>
             </form>
         </modal>
@@ -128,6 +129,9 @@ export default {
         { name: 'Industrial Physics', value: 'Industrial Physics' },
         { name: 'Mathematics & Statistics', value: 'Mathematics & Statistics' },
       ],
+      imageUrl: '',
+      readyStatus: false,
+      imageStatus: false,
     };
   },
   methods: {
@@ -147,11 +151,13 @@ export default {
       image.append('image', files[0]);
       this.$http
       // eslint-disable-next-line
-        .post('http://localhost:5000/api/upload', image, { headers: { 'Content-Type': 'multipart/form-data' } })
+        .post( URL + '/api/upload', image, { headers: { 'Content-Type': 'multipart/form-data' } })
         .then((response) => {
           this.student.image = response.body.imageName;
           // eslint-disable-next-line
-          console.log(this.student.image);
+          this.imageUrl = URL + '/image/' + this.student.image;
+          this.readyStatus = true;
+          this.imageStatus = true;
           // eslint-disable-next-line
         }, response => {
           // eslint-disable-next-line
@@ -190,6 +196,9 @@ export default {
       this.student.dob = '';
       this.student.department = '';
       this.student.level = '';
+      this.imageUrl = '';
+      this.readyStatus = false;
+      this.imageStatus = false;
     },
     loadStates() {
       this.$http

@@ -10,6 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
+                        <p style="text-align:center;" v-if="imageStatus"><img :src="imageUrl" width="260" height="200"/></p>
                         <div class="form-group">
                             <label for="surname" class="control-label col-sm-3 modal-text"> Surname </label>
                             <div class="col-sm-6">
@@ -64,6 +65,12 @@
                                 </select>
                             </div>
                         </div>
+                         <div class="form-group">
+                            <label for="img" class="control-label col-sm-3 modal-text"> Image </label>
+                            <div class="col-sm-6">
+                                <input class="form-control" type="file" id="image" name="image" @change="onFileChange" required/>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -95,6 +102,7 @@ export default {
         dob: '',
         department: '',
         level: '',
+        image: '',
       },
       levels: [
         { name: '100 Level', value: '100' },
@@ -123,6 +131,8 @@ export default {
         { name: 'Industrial Physics', value: 'Industrial Physics' },
         { name: 'Mathematics & Statistics', value: 'Mathematics & Statistics' },
       ],
+      imageUrl: '',
+      imageStatus: false,
     };
   },
   methods: {
@@ -131,6 +141,28 @@ export default {
     },
     hideModal() {
       this.$modal.hide('edit_student');
+    },
+    onFileChange(e) {
+      const files = e.target.files || e.dataTransfer.files;
+      // eslint-disable-next-line
+      if (!files[0])
+        return;
+      const image = new FormData();
+      image.append('image', files[0]);
+      this.$http
+      // eslint-disable-next-line
+        .post( URL + '/api/upload', image, { headers: { 'Content-Type': 'multipart/form-data' } })
+        .then((response) => {
+          this.student.image = response.body.imageName;
+          // eslint-disable-next-line
+          this.imageUrl = URL + '/image/' + this.student.image;
+          this.readyStatus = true;
+          this.imageStatus = true;
+          // eslint-disable-next-line
+        }, response => {
+          // eslint-disable-next-line
+          console.log(response);
+        });
     },
     editStudent() {
       this.$http
@@ -160,6 +192,11 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.student = response.body;
+            if (this.student.image !== null || this.student.image !== '' || this.student.image !== undefined) {
+              this.imageStatus = true;
+              // eslint-disable-next-line
+              this.imageUrl = URL + '/image/' + this.student.image;
+            }
             this.showModal();
           }
           // eslint-disable-next-line
