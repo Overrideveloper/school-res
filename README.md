@@ -1,7 +1,8 @@
 # school-resource-app
 
-> Front-end for the ALC 2.0 Assessment Challenge
-> Find API/Back-end at https://github.com/overrideveloper/student-res-api
+> Front-end for the ALC 2.0 Assessment Challenge.
+
+### Find API/Back-end at https://github.com/overrideveloper/student-res-api
 
 ## Build Setup
 
