@@ -1,6 +1,6 @@
 <template>
     <div>
-        <modal name="add_student" :adaptive="true" :scrollable="true" static="true" :pivotY="0.08" height="auto">
+        <modal name="add_student" :adaptive="true" :scrollable="true" :clickToClose="false" :pivotY="0.08" height="auto">
             <form v-on:submit.prevent="addStudent(); hideModal();" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" v-on:click="hideModal()" aria-label="Close">

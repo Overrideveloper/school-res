@@ -9,7 +9,8 @@
                     <h4 class="modal-title text-center modal-text"><b> {{student.surname}} {{student.firstname}}</b></h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-horizontal">
+                    <div class="form-horizontal">  
+                        <p style="text-align:center;"><img :src="imageUrl" width="260" height="200"/></p>
                         <div class="form-group">
                             <label for="surname" class="control-label col-sm-3 modal-text"> Surname </label>
                             <div class="col-sm-6">
@@ -77,6 +78,8 @@ export default {
   data() {
     return {
       student: [],
+      // eslint-disable-next-line
+      imageUrl: '',
     };
   },
   methods: {
@@ -93,6 +96,10 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.student = response.body;
+            if (this.student.image !== null || this.student.image !== '' || this.student.image !== undefined) {
+              // eslint-disable-next-line
+              this.imageUrl = URL + '/image/' + this.student.image;
+            }
             this.showModal();
           }
           // eslint-disable-next-line
